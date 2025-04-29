@@ -1,0 +1,25 @@
+<div class="container my-5">
+  <h1 class="text-center mb-4">Task Manager</h1>
+
+  <div class="text-center mb-4">
+    <%= link_to '➕ New Task', new_task_path, class: "btn btn-success" %>
+  </div>
+
+  <div class="row justify-content-center">
+    <% @tasks.each do |task| %>
+      <div class="col-md-6">
+        <div class="card mb-4 shadow-sm">
+          <div class="card-body">
+            <h5 class="card-title"><%= task.title.presence || "No Title" %></h5>
+            <p class="card-text"><%= task.description.presence || "No Description" %></p>
+            <div class="d-flex justify-content-between">
+              <%= link_to '👁️ Show', task_path(task), class: "btn btn-primary btn-sm" %>
+              <%= link_to '✏️ Edit', edit_task_path(task), class: "btn btn-warning btn-sm" %>
+              <%= link_to '🗑️ Delete', task_path(task), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-sm" %>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
